@@ -1,1 +1,0 @@
-﻿"C:\Program Files\Microsoft SQL Server\120\Tools\Binn\OSQL.exe" -E -q "BACKUP DATABASE master TO DISK='C:\Temp\db.bak' WITH FORMAT"
