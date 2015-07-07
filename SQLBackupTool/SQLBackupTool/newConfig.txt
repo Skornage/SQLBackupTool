@@ -1,0 +1,5 @@
+﻿dbName => master
+connectionString => Data Source=GREENJM-1\SQLEXPRESS;Initial Catalog=master;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False
+backupPath => C://Temp/
+maxBackups => 2
+notifyEmailAddresses => joshua.green@wddsoftware.com, noah.miller@wddsoftware.com

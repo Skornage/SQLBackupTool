@@ -1,0 +1,10 @@
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\bin\Release\SQLBackupTool.exe.config
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\bin\Release\SQLBackupTool.exe
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\bin\Release\SQLBackupTool.pdb
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\obj\Release\SQLBackupTool.exe
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\obj\Release\SQLBackupTool.pdb
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\bin\Release\SQLBackupTool.exe.manifest
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\bin\Release\SQLBackupTool.application
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\obj\Release\SQLBackupTool.csprojResolveAssemblyReference.cache
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\obj\Release\SQLBackupTool.exe.manifest
+C:\Users\greenjm\Documents\Visual Studio 2013\Projects\SQLBackupTool\SQLBackupTool\SQLBackupTool\obj\Release\SQLBackupTool.application

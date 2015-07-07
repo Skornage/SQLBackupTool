@@ -13,16 +13,15 @@ namespace SQLBackupTool
 	{
 		static void Main(string[] args)
 		{
-			Dictionary<String, String> parameters = getConfigParameters();
+			string[] cmdArgs = Environment.GetCommandLineArgs();
+			Dictionary<String, String> parameters = getConfigParameters(cmdArgs[1]);
 
-			String connectionString = String.Format(@"Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-				parameters["serverName"], parameters["dbName"], parameters["userID"], parameters["password"]);
-
-			SqlConnection conn = new SqlConnection(@"" + parameters["connectionString"]);
-			conn.Open();
-			SqlCommand cmd = new SqlCommand("BACKUP DATABASE " + parameters["dbName"] + " TO DISK='" + parameters["backupPath"] + parameters["dbName"] + "-" + DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss") + "-.bak'", conn);
 			try 
 			{
+				SqlConnection conn = new SqlConnection(parameters["connectionString"]);
+				conn.Open();
+				SqlCommand cmd = new SqlCommand("BACKUP DATABASE " + parameters["dbName"] + " TO DISK='" + parameters["backupPath"] + parameters["dbName"] + "-" + DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss") + "-.bak'", conn);
+
 				cmd.ExecuteNonQuery();
 				string[] backupFiles = System.IO.Directory.GetFiles(parameters["backupPath"], parameters["dbName"] + "*");
 				int countBackups = backupFiles.Length;
@@ -33,19 +32,23 @@ namespace SQLBackupTool
 			}
 			catch (Exception e)
 			{
-				MailMessage mail = new MailMessage();
-				mail.From = new MailAddress("joshue.green@wddsoftware.com");
-				mail.To.Add(new MailAddress("joshua.green@wddsoftware.com"));
-				SmtpClient client = new SmtpClient();
+				SmtpClient client = new SmtpClient("smtp.gmail.com");
 				client.Port = 587;
 				client.EnableSsl = true;
-				client.DeliveryMethod = SmtpDeliveryMethod.Network;
 				client.UseDefaultCredentials = false;
-				client.Host = "smtp.gmail.com";
+				client.Credentials = new System.Net.NetworkCredential("wddtester@gmail.com", "wddtester89");
+
+				MailMessage mail = new MailMessage();
+				mail.From = new MailAddress("wddtester@gmail.com");
+				string[] recipients = parameters["notifyEmailAddresses"].Split(',');
+				foreach (string recipient in recipients)
+				{
+					mail.To.Add(new MailAddress(recipient.Trim()));
+				}
 				mail.Subject = "Error with Database Backup";
-				mail.Body = "There was an error backing up " + parameters["dbName"] + "\n" + e.Message;
+				mail.Body = @"There was an error backing up " + parameters["dbName"] + "\n" + e.Message;
+
 				client.Send(mail);
-				throw;
 			}
 			
 		}
@@ -66,10 +69,10 @@ namespace SQLBackupTool
 			System.IO.File.Delete(filePath);
 		}
 
-		static Dictionary<String, String> getConfigParameters()
+		static Dictionary<String, String> getConfigParameters(String filename)
 		{
 			Dictionary<String, String> result = new Dictionary<String, String>();
-			using (System.IO.StreamReader sr = new System.IO.StreamReader("./../../config.txt"))
+			using (System.IO.StreamReader sr = new System.IO.StreamReader("./../../" + filename))
 			{
 				while (!sr.EndOfStream)
 				{
